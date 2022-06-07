@@ -61,6 +61,7 @@ void FlashSort(int a[], int n, unsigned long long &cCount) {
     
 }
 
+//  NGHIA
 //Cmd 1 [5] : [Execution file] -a [Algorithm] [Given input] [Output parameter(s)]
 //Ex:         a.exe            -a radix-sort  input.txt     -both
 void Command1(string algoName, string inputFilePath, string outputParameters) {
@@ -190,7 +191,22 @@ void Command1(string algoName, string inputFilePath, string outputParameters) {
 
 //Cmd 2 [6] : [Execution file] -a [Algorithm] [Input size] [Input order] [Output parameter(s)]
 //             a.exe            -a selection-sort 50        -rand         -time
+// NGHIA
+void Command2(string algoName, int inputSize, string inputOrder, string outputParameters) {
 
+}
+
+void Command3() {
+
+}
+
+void Command4() {
+
+}
+
+void Command5() {
+
+}
 
 int main(int argc, char* argv[]) {
     // Check argc and argv
@@ -210,13 +226,16 @@ int main(int argc, char* argv[]) {
     // COMMAND 1
     if ((argc == 5) && (mode == "-a") && (checkArgv3 == false)) 
     {
-        string outputParameter = argv[argc - 1];
+        string outputParameter = argv[4];
         Command1(algorithmName, argv3, outputParameter);
     }
     // COMMAND 2
     else if ((argc == 6) && (mode == "-a")) 
     {
-        cout << "cmd 2";
+        int inputSize = stoi(argv3);
+        string inputOrder = argv[4];
+        string outputParameter = argv[5];
+        Command2(algorithmName, inputSize, inputOrder, outputParameter);
     }
     // COMMAND 3
     else if ((argc == 5) && (mode == "-a") && (checkArgv3 == true)) 
