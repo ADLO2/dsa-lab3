@@ -333,7 +333,7 @@ void Command1(string algoName, string inputFilePath, string outputParameters) {
     else if (algoName == "quick-sort") 
     {
         auto started = chrono::high_resolution_clock::now();
-        QuickSort(a, n, compareCount);
+        QuickSort(a,0, n-1, compareCount);
         auto done = chrono::high_resolution_clock::now();
         runTime = chrono::duration_cast<chrono::milliseconds>(done - started).count();
     }
@@ -556,7 +556,7 @@ void Command2(string algoName, int inputSize, string inputOrder, string outputPa
     else if (algoName == "quick-sort") 
     {
         auto started = chrono::high_resolution_clock::now();
-        QuickSort(a, n, compareCount);
+        QuickSort(a,0, n-1, compareCount);
         auto done = chrono::high_resolution_clock::now();
         runTime = chrono::duration_cast<chrono::milliseconds>(done - started).count();
     }
