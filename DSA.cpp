@@ -46,11 +46,67 @@ void HeapSort(int a[], int n, unsigned long long &cCount) {
 void MergeSort(int a[], int n, unsigned long long &cCount) {
     
 }
-void QuickSort(int a[], int n, unsigned long long &cCount) {
-    
+// quick sort
+int partition(int arr[], int start, int end, unsigned long long &cCount)
+{
+	int pivot = arr[start];
+	int count = 0;
+	for (int i = start + 1;(++cCount && i <= end); i++) {
+		if (++cCount && arr[i] <= pivot)
+			count++;
+	}
+	int pivotIndex = start + count;
+	swap(arr[pivotIndex], arr[start]);
+	int i = start, j = end;
+
+	while (++++cCount && i < pivotIndex && j > pivotIndex) {
+
+		while (++cCount && arr[i] <= pivot) {
+			i++;
+		}
+
+		while (++cCount && arr[j] > pivot) {
+			j--;
+		}
+
+		if (++++cCount && i < pivotIndex && j > pivotIndex) {
+			swap(arr[i++], arr[j--]);
+		}
+	}
+	return pivotIndex;
+}
+void QuickSort(int a[], int start,int end, unsigned long long &cCount) {
+    if (++cCount && start >= end)
+		return;
+	int p = partition(a, start, end, cCount);
+
+	QuickSort(a, start, p - 1,cCount);
+
+	QuickSort(a, p + 1, end,cCount);
 }
 void ShakerSort(int a[], int n, unsigned long long &cCount) {
-    
+    int left = 0, right = n-1;int k = 0;
+	while(++cCount && left < right)
+	{
+		for (int j = n-1;(++cCount && j > left); j--)
+		{
+			if(++cCount && a[j] < a[j-1])
+			{
+				swap(a[j],a[j-1]);
+				k = j;
+			}
+		}
+		left = k;
+		for (int j = left;(++cCount && j < right); j++)
+		{
+			if(++cCount && a[j] > a[j+1])
+			{
+				swap(a[j],a[j+1]);
+				k = j;
+			}
+		}
+		right = k;	
+	}
 }
 void ShellSort(int a[], int n, unsigned long long &cCount) {
     
@@ -59,7 +115,72 @@ void CountingSort(int a[], int n, unsigned long long &cCount) {
     
 }
 void FlashSort(int a[], int n, unsigned long long &cCount) {
-    
+    int sizeBucket = 0.45*n;
+	int* Bucket = new int[sizeBucket];
+	for (int i = 0;(++cCount && i < sizeBucket); i++)
+	{
+		Bucket[i] = 0;
+	}
+	int imax = 0, min = a[0];
+	for (int i = 0;(++cCount && i < n); i++)
+	{
+		if(++cCount && a[i] > a[imax])
+		{
+			imax = i;
+		}
+		if(++cCount && a[i] < min)
+		{
+			min = a[i];
+		}
+	}
+	int k = 0;
+	float c = ((sizeBucket-1)*1.0/(a[imax]-min));
+	for (int i = 0;(++cCount && i < n); i++)
+	{
+		k = (a[i] - min)*c;
+		Bucket[k]++;
+	}
+	for (int i = 1;(++cCount && i < sizeBucket); i++)
+	{
+		Bucket[i] = Bucket[i] + Bucket[i-1];
+	}
+	// hoan doi cac gia tri tuong ung vao bucket
+	swap(a[imax],a[0]);
+	int move = 0, hold, t = sizeBucket-1, index = 0;
+	while(++cCount && move < n-1)
+	{
+		while(++cCount && index > Bucket[t] - 1)
+		{
+			index++;
+			t = (a[index] - min)*c;
+		}
+		hold = a[index];
+		if(++cCount && t < 0)
+		{
+			break;
+		}
+		while(++cCount && index != Bucket[t])
+		{
+			t = (hold - min)*c;
+			Bucket[t]--;
+			swap(hold,a[Bucket[t]]);
+			move++;
+		}
+	}
+	// insertion sort
+	int temp, j;
+	for (int i = 1;(++cCount && i < n); i++)
+	{
+		temp = a[i];
+		j = i-1;
+		while(++++cCount && j >= 0 && a[j] > temp)
+		{
+			a[j+1] = a[j];
+			j--;
+		}
+		a[j+1] = temp;
+	}
+	delete[] Bucket;
 }
 
 //  NGHIA
