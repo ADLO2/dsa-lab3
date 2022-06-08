@@ -37,7 +37,22 @@ void RadixSort(int a[], int n, unsigned long long &cCount) {
     
 }
 void BubbleSort(int a[], int n, unsigned long long &cCount) {
-    
+    cCount = 0;
+    bool check = false; 
+    for (int i = 0; i < n-1; i++)
+    {
+        check = false;
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (a[j] > a[j+1])
+            {
+                swap(a[j], a[j+1]);
+                check = true;
+            }
+        }
+        if (check == false)
+            break;
+    }
 }
 void HeapSort(int a[], int n, unsigned long long &cCount) {
     
