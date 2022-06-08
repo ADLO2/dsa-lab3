@@ -332,6 +332,7 @@ void Command1(string algoName, string inputFilePath, string outputParameters) {
     }
     else if (algoName == "quick-sort") 
     {
+        compareCount = 0;
         auto started = chrono::high_resolution_clock::now();
         QuickSort(a,0, n-1, compareCount);
         auto done = chrono::high_resolution_clock::now();
@@ -339,6 +340,7 @@ void Command1(string algoName, string inputFilePath, string outputParameters) {
     }
     else if (algoName == "shaker-sort") 
     {
+        compareCount = 0;
         auto started = chrono::high_resolution_clock::now();
         ShakerSort(a, n, compareCount);
         auto done = chrono::high_resolution_clock::now();
@@ -360,6 +362,7 @@ void Command1(string algoName, string inputFilePath, string outputParameters) {
     }
     else if (algoName == "flash-sort") 
     {
+        compareCount = 0;
         auto started = chrono::high_resolution_clock::now();
         FlashSort(a, n, compareCount);
         auto done = chrono::high_resolution_clock::now();
@@ -555,6 +558,7 @@ void Command2(string algoName, int inputSize, string inputOrder, string outputPa
     }
     else if (algoName == "quick-sort") 
     {
+        compareCount = 0;
         auto started = chrono::high_resolution_clock::now();
         QuickSort(a,0, n-1, compareCount);
         auto done = chrono::high_resolution_clock::now();
@@ -562,6 +566,7 @@ void Command2(string algoName, int inputSize, string inputOrder, string outputPa
     }
     else if (algoName == "shaker-sort") 
     {
+        compareCount = 0;
         auto started = chrono::high_resolution_clock::now();
         ShakerSort(a, n, compareCount);
         auto done = chrono::high_resolution_clock::now();
@@ -583,6 +588,7 @@ void Command2(string algoName, int inputSize, string inputOrder, string outputPa
     }
     else if (algoName == "flash-sort") 
     {
+        compareCount = 0;
         auto started = chrono::high_resolution_clock::now();
         FlashSort(a, n, compareCount);
         auto done = chrono::high_resolution_clock::now();
