@@ -55,8 +55,28 @@ void BubbleSort(int a[], int n, unsigned long long &cCount) {
             break;
     }
 }
-void HeapSort(int a[], int n, unsigned long long &cCount) {
-    
+
+void heapify(int a[], int n, int i, unsigned long long &cCount){ 
+    int max = i;    
+    int l = i*2 + 1;  
+    int r = l+1;    
+    if(l < n && a[l] > a[max])   
+        max = l;
+    if(r < n && a[r] > a[max])   
+        max = r;
+    if(max != i){      
+        swap(a[i], a[max]);   
+        heapify(a, n, max, cCount);    
+    }
+}
+
+void HeapSort(int a[], int n, unsigned long long &cCount){
+    for(int i = n/2 - 1; i>=0; i--)   
+        heapify(a, n, i, cCount);   
+    for(int j = n-1 ; j>0; j--){   
+        swap(a[0], a[j]);  
+        heapify(a, j, 0, cCount);  
+    }
 }
 void MergeSort(int a[], int n, unsigned long long &cCount) {
     
