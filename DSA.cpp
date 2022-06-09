@@ -78,8 +78,39 @@ void HeapSort(int a[], int n, unsigned long long &cCount){
         heapify(a, j, 0, cCount);  
     }
 }
-void MergeSort(int a[], int n, unsigned long long &cCount) {
-    
+
+void MergeSort(int a[], int first, int last, unsigned long long &cCount) {
+	if (++cCount && first <	 last){
+		int mid = (first + last) / 2;
+		//start occupied on two sub-arrays
+		MergeSort(a, first, mid, cCount);
+		MergeSort(a, mid + 1, last, cCount);
+		
+		//merge two ordered sub-arrays using a temporary array
+		int temp[last-first], n = 0, firstLeft = first, firstRight = mid + 1;
+		while (++cCount && firstLeft <= mid && ++cCount && firstRight <= last){
+			if (++cCount && a[firstLeft] <= a[firstRight]) {
+				temp[n] = a[firstLeft];
+				firstLeft++;
+			}
+			else {
+				temp[n] = a[firstRight];
+				firstRight++;
+			}
+			n++;
+		}
+		while (++cCount && firstLeft <= mid) {
+			temp[n] = a[firstLeft];
+			firstLeft++;
+			n++;
+		}
+		while (++cCount && firstRight <= last) {
+			temp[n] = a[firstRight];
+			firstRight++;
+			n++;
+		}
+		for (int i=0; i<n; i++) a[first + i] = temp[i];
+	}
 }
 // quick sort
 int partition(int arr[], int start, int end, unsigned long long &cCount)
