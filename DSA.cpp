@@ -7,6 +7,7 @@
 using namespace std;
 
 #include "DataGenerator.h"
+#include "DataGenerator.cpp"
 const int DATASIZE1 = 10000;
 const int DATASIZE2 = 30000;
 const int DATASIZE3 = 50000;
@@ -174,8 +175,23 @@ void ShakerSort(int a[], int n, unsigned long long &cCount) {
 		right = k;	
 	}
 }
-void ShellSort(int a[], int n, unsigned long long &cCount) {
-    
+
+void ShellSort(int a[], int n, unsigned long long & cCount){
+	int k=n;
+	while (++cCount && k!=1) {
+		k /= 2;
+		int i=0;
+		for (int i=0; ++cCount && i+k<n; i++){
+			if (++cCount && a[i] > a[i+k]) {
+				swap(a[i],a[i+k]);
+				int temp = i;
+				while (++cCount && temp-k >= 0 && ++cCount && a[temp] < a[temp-k]){
+					swap(a[temp], a[temp-k]);
+					temp -= k;
+				}
+			}
+		}
+	}
 }
 void CountingSort(int a[], int n, unsigned long long &cCount) {
     
@@ -392,7 +408,7 @@ void Command1(string algoName, string inputFilePath, string outputParameters) {
     else if (algoName == "merge-sort") 
     {
         auto started = chrono::high_resolution_clock::now();
-        MergeSort(a, n, compareCount);
+        MergeSort(a, 0, n-1, compareCount);
         auto done = chrono::high_resolution_clock::now();
         runTime = chrono::duration_cast<chrono::milliseconds>(done - started).count();
     }
@@ -618,7 +634,7 @@ void Command2(string algoName, int inputSize, string inputOrder, string outputPa
     else if (algoName == "merge-sort") 
     {
         auto started = chrono::high_resolution_clock::now();
-        MergeSort(a, n, compareCount);
+        MergeSort(a, 0, n-1, compareCount);
         auto done = chrono::high_resolution_clock::now();
         runTime = chrono::duration_cast<chrono::milliseconds>(done - started).count();
     }
